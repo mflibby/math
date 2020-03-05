@@ -14,3 +14,18 @@ def integrate(function,bounds,Δx=0.0001,area_func= lambda function, x, Δx : fu
     """
     import numpy as np
     return sum(area_func(function, np.arange(bounds[0],bounds[1],Δx), Δx))
+
+
+def trap_integrate(function,bounds,Δx = 0.0001):
+    """
+    Calculates the integral of an arbitrary function numerically using a trapezoidal area, implementing the integrate function
+
+    INPUTS:
+    function  - like y = lambda x : x**2
+    bounds    - 1D array with 2 elements, like [-5,100]
+    Δx        - step size (i.e. width of areas). must be scalar
+
+    RETURNS:
+    area - area of the integral
+    """
+    return integrate(function,bounds,Δx,lambda function, x, Δx: (function(x)+function(x+Δx))*Δx*0.5)
