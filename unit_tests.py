@@ -5,5 +5,8 @@ import numpy as np
 #y(x)
 
 
-y = lambda x: x**2
-i.integrate(y,[0,2],area_func = lambda function,x,Δx : (function(x)+function(x+Δx))*Δx/2)
+y = lambda x: np.sin(x**2)/np.log(x)
+#i.trap_integrate(y,[0,2])
+
+integral = i.optimizeIntegral(y,[1.1,10.1],0.00001)
+print('Dynamic Optimum: ', integral.dynamicOptimum(), '\nRough Optimum: ', integral.roughOptimum())

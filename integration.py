@@ -45,20 +45,49 @@ class optimizeIntegral():
     area - area of the integral
     """
     import numpy as np
-    def __init__(function, bounds, Δx , area_func = lambda function, x, Δx : function(x)*Δx):
+    def __init__(self,function, bounds, Δx , area_func = lambda function, x, Δx : function(x)*Δx):
         self.func      = function
         self.bounds    = bounds
         self.step      = Δx
         self.area_func = area_func
 
+    def areaAdd(self, x, Δx, areas):
+        """
+        Appends to the area list the next area given scalar x, Δx, and the previous list of areas
+        Changes step size if the width of the initial Δx contains a cross over using functional recursion.
+        """
+        funcx1 = self.func(x)
+        funcx2 = self.func(x+Δx)
+        if (funcx1 >= 0 and funcx2>=0) or (funcx1<=0 and funcx2<=0):
+            areas.append(self.area_func(self.func,x,Δx))
+            #print('m')
+        else:
+            Δx = Δx/2
+            self.areaAdd(x,Δx,areas)
 
-    def roughOptimum():
+        return areas, x+Δx
+
+
+    def roughOptimum(self):
         """
         Chops off cross-over values.
         """
-        step_list = np.arange(self.bounds[0],self.bound[1],self.step)
+        import numpy as np
+
+        step_list = np.arange(self.bounds[0],self.bounds[1],self.step)
+        area = sum([self.area_func(self.func,i,self.step) for i in step_list if (self.func(i) >= 0 and self.func(i+self.step)>=0) or (self.func(i)<=0 and self.func(i+self.step)<=0)])
+        return area
+
+
+    def dynamicOptimum(self):
+        """
+        Changes step size around cross-overs in order to ensure areas will be on oneside or the other of cross-overs
+        """
+        import numpy as np
+        step_list = np.arange(self.bounds[0],self.bounds[1],self.step)
         areas = []
-        for i in step_list:
-            if abs(self.func(i)+self.func(i+self.step))>=abs(self.func(i)):
-                areas.append(self.area_func(self.func,i,self.step))
+        newx = step_list[0]
+        while newx <= step_list[-1]:
+            areas, newx = self.areaAdd(newx,self.step,areas)
+            newx
         return sum(areas)
