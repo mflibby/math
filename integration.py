@@ -1,7 +1,7 @@
 def integrate(function,bounds,Δx=0.0001,area_func= lambda function, x, Δx : function(x)*Δx ):
     """
     Calculates the integral of an arbitrary function numerically using an arbitrary area function (the area function defaults to a basic
-    rectangular area, with no preference to circumscribing vs inscribing)
+    rectangular area, with no preference to circumscribing vs inscribing).
 
     INPUTS:
     function  - like y = lambda x : x**2
