@@ -1,3 +1,5 @@
+from vectors import *
+
 def integrate(function,bounds,Δx=0.0001,area_func= lambda function, x, Δx : function(x)*Δx ):
     """
     Calculates the integral of an arbitrary function numerically using an arbitrary area function (the area function defaults to a basic
@@ -58,7 +60,7 @@ class optimizeIntegral():
         """
         funcx1 = self.func(x)
         funcx2 = self.func(x+Δx)
-        if (funcx1 >= 0 and funcx2>=0) or (funcx1<=0 and funcx2<=0):
+        if normalize(funcx1)==normalize(funcx2):
             areas.append(self.area_func(self.func,x,Δx))
             #print('m')
         else:
@@ -75,7 +77,7 @@ class optimizeIntegral():
         import numpy as np
 
         step_list = np.arange(self.bounds[0],self.bounds[1],self.step)
-        area = sum([self.area_func(self.func,i,self.step) for i in step_list if (self.func(i) >= 0 and self.func(i+self.step)>=0) or (self.func(i)<=0 and self.func(i+self.step)<=0)])
+        area = sum([self.area_func(self.func,i,self.step) for i in step_list if (normalize(self.func(i))==normalize(self.func(i+self.step)))])
         return area
 
 
