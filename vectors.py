@@ -7,3 +7,7 @@ def cross_product(A,B):
 def normalize(vec):
     import numpy as np
     return np.sqrt(vec**2)/vec
+
+def normalize2(vec1,vec2):
+    vec3 = vec2-vec1
+    return vec3/(np.sqrt(sum([i**2 for i in vec3])))
