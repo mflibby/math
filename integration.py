@@ -91,5 +91,5 @@ class optimizeIntegral():
         newx = step_list[0]
         while newx <= step_list[-1]:
             areas, newx = self.areaAdd(newx,self.step,areas)
-            newx
+            #newx
         return sum(areas)

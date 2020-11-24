@@ -1,12 +1,17 @@
 import integration as i
 import numpy as np
-
+import functions as func
+import matplotlib.pyplot as plt
+import linear_algebra as lin
 #x**2 * Δx
 #y(x)
 
-
-y = lambda x: np.sin(x**2)/np.log(x)
-#i.trap_integrate(y,[0,2])
-
-integral = i.optimizeIntegral(y,[1.1,10.1],0.00001, lambda function, x, Δx : .5*(function(x)+function(x+Δx))*Δx)
-print('Dynamic Optimum: ', integral.dynamicOptimum(), '\nRough Optimum: ', integral.roughOptimum())
+#x = np.linspace(1,10,50)
+#y = [func.gamma(i) for i in x]
+#plt.plot(x,y)
+#plt.show()
+#print(func.gamma(9))
+x = np.array([[1,2,0],
+              [5,-9,2],
+              [1,1,1]])
+print(lin.det(x))
