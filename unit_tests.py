@@ -11,7 +11,6 @@ import linear_algebra as lin
 #plt.plot(x,y)
 #plt.show()
 #print(func.gamma(9))
-x = np.array([[1,2,0],
-              [5,-9,2],
-              [1,1,1]])
-print(lin.det(x))
+x = [[1,2,0]]
+X = lin.Matrix(x)
+print(lin.ip(X,X))
