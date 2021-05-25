@@ -64,8 +64,7 @@ def series_P ( O , i , n , forward = True ) -> float:
 
 def arith_grad_series ( O , i , n , forward = True ) -> float:
     """
-    Calculates the worth of n 'payments' of O at some other time, either worth at time of 'payment' (when forward == True, which gives O == P, Z == A);
-    else a present worth - i.e. O == A, Z == P.
+    TODO (need to think)
     INPUT:
         O : numerical   - the known variable, either G - the gradient factor if forward == True, else A - the worth of each payment at the time of payment
         i : numerical   - the interest rate
@@ -73,22 +72,30 @@ def arith_grad_series ( O , i , n , forward = True ) -> float:
         forward : bool  - the direction of worth to be calculated, defaults to True
     RETURN:
         Z : numerical - G(  ( 1 / i ) - n / ( ( 1 + i )^n - 1 )  ), the neccessary value of A
-                        else A/(  ( 1 / i ) - n / ( ( 1 + i )^n - 1 )  ), the gradient value.
+                        else A/(  ( 1 / i ) - n / ( ( 1 + i )^n - 1 )  ), the gradient value G.
     """
     return O * (  ( 1 / i ) - n / ( ( 1 + i ) ** n - 1 )  ) if forward else O / (  ( 1 / i ) - n / ( ( 1 + i ) ** n - 1 )  )
 
 
 def arith_grad_worth ( O , i , n , forward = True ) -> float:
     """
-    Calculates the worth of n 'payments' of O at some other time, either worth at time of 'payment' (when forward == True, which gives O == P, Z == A);
-    else a present worth - i.e. O == A, Z == P.
+    TODO (need to think)
     INPUT:
         O : numerical   - the known variable, either G - the gradient factor if forward == True, else A - the worth of each payment at the time of payment
         i : numerical   - the interest rate
         n : int         - the number of periods the interest compounds
         forward : bool  - the direction of worth to be calculated, defaults to True
     RETURN:
-        Z : numerical - G(  ( 1 / i ) - n / ( ( 1 + i )^n - 1 )  ), the neccessary value of A
-                        else A/(  ( 1 / i ) - n / ( ( 1 + i )^n - 1 )  ), the gradient value.
+        Z : numerical - G(  ( ( 1 + i )^n - i * n - 1 ) / ( ( i^2 ) * ( 1 + i )^n )  ), the present worth P
+                        else P/(  ( ( 1 + i )^n - i * n - 1 ) / ( ( i^2 ) * ( 1 + i )^n )  ), the gradient value G.
     """
-    return O * (  ( 1 / i ) - n / ( ( 1 + i ) ** n - 1 )  ) if forward else O / (  ( 1 / i ) - n / ( ( 1 + i ) ** n - 1 )  )
+    return O * (  ( ( 1 + i ) ** n - i * n - 1 ) / ( ( i ** 2 ) * ( 1 + i ) ** n )  ) if forward else O / (  ( ( 1 + i ) ** n - i * n - 1 ) / ( ( i ** 2 ) * ( 1 + i ) ** n )  )
+
+
+
+
+
+
+
+
+    

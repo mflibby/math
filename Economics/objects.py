@@ -4,3 +4,7 @@
 class Currency:
 
     pass
+
+
+class USD ( Currency ):
+    pass
