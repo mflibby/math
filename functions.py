@@ -5,9 +5,9 @@ e = 2.71828182845904523536
 π = 3.1415926535897932384626433
 ϕ = 1.6180339887498948482
 
-def gamma(z):
+def gamma(z, top = 10):
     Γ = lambda x : x**(z-1)*e**(-x)
-    return integrate(Γ, [0,100])
+    return integrate(Γ, (10**-9,top))
 
 
 def zeta(s, max = 1000000):
